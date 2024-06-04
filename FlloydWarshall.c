@@ -1,52 +1,68 @@
 //Floyd Warshall
 #include<stdio.h>
-#include<stdlib.h>
 #define INF 99999
-void print(int V,int dist[][V])
+int n;
+int g[100][100], d[100][100], p[100][100];
+void printmatrix()
 {
-	printf("The following matrix shows the shortest distances between every pair of vertices\n");
-	int i,j;
-	for(i=0;i<V;i++)
+	int i, j;
+	for(i=0;i<n;i++)
 	{
-		for(j=0;j<V;j++)
-		{
-			if(dist[i][j]=INF)
-				printf("%7s",INF);
-			else
-				printf("%7d",dist[i][j]);
-		}
+		for(j=0;j<n;j++)
+		if(d[i][j]==INF)
+		printf("INF ");
+		else
+		printf("%d ", d[i][j]);
 		printf("\n");
-	}
-}
-void floydWarshall(int V,int graph[][V])
+	}//for
+}//printmatrix()
+void printPredMat()
 {
-	int dist[V][V],i,j,k;
-	
-	for(i=0;i<V;i++)
-		for(j=0;j<V;j++)
-			dist[i][j]=graph[i][j];
-			
-	for(k=0;k<V;k++)
+	int i, j;
+	for(i=0;i<n;i++)
 	{
-		for(i=0;i<V;i++)
-		{
-			for(j=0;j<V;j++)
-			{
-				if(dist[i][k]+dist[k][j]<dist[i][j])
-					dist[i][j]=dist[i][k]+dist[k][j];
-			}
-		}
-	}
-}
-void main()
+		for(j=0;j<n;j++)
+		if(p[i][j]==-1)
+		printf("NIL ");
+		else
+		printf("%d ", p[i][j]);
+		printf("\n");
+	}//for
+}//printPredMat()
+void FloydWarshall()
 {
-	int V,graph[V][V],i,j;
-	printf("Enter the number of vertices:");
-	scanf("%d",&V);
-	for(i=0;i<V;i++)
+	int i, j, k;
+	for(i=0;i<n;i++)
+	for(j=0;j<n;j++)
 	{
-		for(j=0;j<V;j++)
-			scanf("%d",&graph[i][j]);
-	}
-	floydWarshall(V,graph);
-}
+		d[i][j]=g[i][j];
+		if(i==j||g[i][j]==INF)
+		p[i][j]=-1;
+		else
+		p[i][j]=i;
+	}//for
+	for(k=0;k<n;k++)
+	for(i=0;i<n;i++)
+	for(j=0;j<n;j++)
+	if(d[i][k]+d[k][j]<d[i][j])
+	{
+		d[i][j]=d[i][k]+d[k][j];
+		p[i][j]=p[k][j];
+	}//if
+	printf("Distance matrix:\n");
+	printmatrix();
+	printf("Predessor matrix:\n");
+	printPredMat();
+}//FloydWarshall()
+int main()
+{
+	printf("Enter number of vertices: ");
+	scanf("%d", &n);
+	int i, j;
+	printf("Enter weight matrix:(use 99999 to represent infinity)\n");
+	for(i=0;i<n;i++)
+	for(j=0;j<n;j++)
+	scanf("%d", &g[i][j]);
+	FloydWarshall();
+	return 0;
+}//main()
