@@ -1,3 +1,4 @@
+//graph-color
 #include <stdio.h>
 #include<stdbool.h>
 #define MAX_VERTICES 20 // Maximum number of vertices

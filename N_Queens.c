@@ -1,3 +1,4 @@
+//N_Queens
 #include<stdio.h>
 #include<stdlib.h>
 void printSolution(int N,int board[N][N])

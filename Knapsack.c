@@ -1,3 +1,4 @@
+//knapsack
 #include<stdio.h>
 #include<stdlib.h>
 int max(float pw[],int n)

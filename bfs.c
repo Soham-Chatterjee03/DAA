@@ -1,3 +1,4 @@
+//BFS
 #include <stdio.h>
  
 int n, i, j, visited[10], queue[10], front = -1, rear = -1;

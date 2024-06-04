@@ -1,3 +1,4 @@
+//Binary Search Array
 #include<stdio.h>
 int main(){
     int arr[]={1,15,26,29,31,35,39,87,104,114};

@@ -1,3 +1,4 @@
+//All Sorting
 #include<stdio.h>
 int arr[100];
 int size=0;
